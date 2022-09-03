@@ -2,20 +2,20 @@ pipeline {
     agent any
 
     stages {
-        stage('SCM') {
+        stage('scm') {
             steps {
                 git 'https://github.com/awspandian/aug-sam.git'
             }
         }
-     	stage('BUILD') {
+		stage('Build') {
             steps {
                 sh 'mvn clean'
-		sh 'mvn install'
+				sh 'mvn install'
             }
         }
-     	stage('DEPLOY') {
+		stage('Deployment') {
             steps {
-		sh 'cp -rp "/var/lib/jenkins/workspace/pipeline/target/my-web.war" "/opt/apache-tomcat/webapps"'
+                sh 'cp -rp "/var/lib/jenkins/workspace/demo-pipeline/target/my-web.war" "/opt/apache-tomcat/webapps"'
             }
         }
     }
